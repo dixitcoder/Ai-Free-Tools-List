@@ -1,6 +1,7 @@
 <template>
+
   <router-view></router-view>
-  
+
   <div v-if="check" >
     <VBtn
       color="error"
@@ -34,6 +35,7 @@
 </template>
 
 <script>
+
 export default {
   data() {
     return {

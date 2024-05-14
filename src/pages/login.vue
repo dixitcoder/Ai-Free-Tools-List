@@ -1,54 +1,66 @@
-<script>
-import { auth } from "@/services/firebaseauth";
-import { signInWithEmailAndPassword  , createUserWithEmailAndPassword} from "firebase/auth";
-export default {
-  data() {
-    return {
-      emailLogin: "admin@gmail.com",
-    passwordLogin: "123123",
-    emailReg:'',
-    passwordReg:''
-    }
-  },
-  methods: {
-    doLogin() {createUserWithEmailAndPassword
-      signInWithEmailAndPassword(auth, this.emailLogin, this.passwordLogin)
-        .then((userCredential) => {
-          // Signed in
-          const user = userCredential.user;
-         this.$router.push('/home')
-window.open('www.google.com')
-         console.log(user);
-          // Additional logic after successful login
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
-    doRegister(){
+<script setup>
+import { ref, computed, onMounted } from "vue";
+import router from "@/router";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
-      createUserWithEmailAndPassword(auth, this.emailReg, this.passwordReg)
-  .then((userCredential) => {
-    // Signed up
+import { useStore } from "vuex";
+import { auth } from "@/services/firebaseauth";
+
+// user login
+const emailLogin = ref('')
+const passwordLogin = ref('')
+
+const loginError = ref(false);
+const isAuthenticated = ref(false);
+
+
+const store = useStore();
+
+const newcall = () => {
+  let log = store.state.users;
+  log = false;
+  console.log(log);
+};
+
+newcall();
+
+onMounted(() => {
+  auth.onAuthStateChanged((user) => {
+    isAuthenticated.value = !!user;
+    if (user) {
+      router.push("/dashboard");
+    }
+  });
+});
+
+const doLogin = async () => {
+  console.log(emailLogin,passwordLogin);
+  try {
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      emailLogin.value,
+      passwordLogin.value
+    );
     const user = userCredential.user;
-    console.log(user);
-    // ...
-  })
-  .catch((error) => {
+    isAuthenticated.value = true;
+    const data = JSON.stringify(user);
+      console.log(data);
+    router.push("/dashboard");
+  } catch (error) {
+    loginError.value = true;
     const errorCode = error.code;
     const errorMessage = error.message;
-    console.log(errorCode);
-    console.log(errorMessage);
-    // ..
-  });
-
-    }
-  },
-
+    console.error(errorCode, errorMessage);
+  }
 };
+
+
+
+
 </script>
 
 <template>
+  
   <div>
     <div id="app">
       <div class="login-page">

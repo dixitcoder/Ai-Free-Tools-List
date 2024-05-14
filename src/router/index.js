@@ -1,3 +1,8 @@
+// auth firebase
+
+
+import { createRouter, createWebHistory } from "vue-router";
+import {auth} from '@/services/firebaseauth'
 // Import your Vue components
 import Login from '@/pages/login.vue';
 import Home from '/home/dixitcoder/Desktop/DixitCoder_Project/tools-ai/src/pages/home.vue'
@@ -15,14 +20,22 @@ import c from '/home/dixitcoder/Desktop/DixitCoder_Project/tools-ai/src/pages/tu
 import Ruby from '/home/dixitcoder/Desktop/DixitCoder_Project/tools-ai/src/pages/tutorial/ruby.vue'
 // Import Vue Router
 
+// firebase auth
+
+
 
 // admin component
+import Dashboard from '/home/dixitcoder/Desktop/DixitCoder_Project/tools-ai/src/components/dashboard.vue'
 import tableAdmin from '@/components/pages/table-admin.vue';
 
-import { createRouter, createWebHistory } from 'vue-router'
+// 404 page error path
 
-// Define your routes
-const routes = [
+import NotFound from '@/components/404.vue'
+
+
+const router = createRouter({
+  history: createWebHistory(),
+routes :  [
   { path: '/', redirect: '/home' },
   { path: '/home', name: 'Home', component: Home },
   // Add more routes as needed
@@ -41,17 +54,38 @@ const routes = [
   {path:'/ruby',name:'Ruby Basics',component: Ruby},
 
 
+
   // admin component
+  {path:'/dashboard',name:'Dashboard',component: Dashboard, meta: {
+    requiresAuth: true, // Add this meta field to indicate authentication is required
+  },},
   {path:'/admin-table',name:'admin-table',component: tableAdmin},
 
+  // 404 page error
+  { path: '/:pathMatch(.*)*', component: NotFound }
 
 ]
-
-
-// Create the router instance
-const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
-  routes,
 })
 
-export default router
+router.beforeEach(async (to, from, next) => {
+  const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
+
+  // Wait for the authentication state to be resolved
+  await new Promise(resolve => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      unsubscribe(); // Unsubscribe to avoid multiple calls
+      resolve(user);
+    });
+  });
+
+  const user = auth.currentUser;
+
+  if (requiresAuth && !user) {
+    // User is not authenticated, and the route requires authentication
+    next('/login'); // Redirect to the login page
+  } else {
+    next(); // Continue navigation
+  }
+});
+
+export default router;

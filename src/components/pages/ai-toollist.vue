@@ -459,7 +459,7 @@ export default {
       <!-- Tool Cards -->
 
       <v-row>
-        <v-col v-for="(tool, index) in filteredItems" :key="index" cols="12" md="4">
+        <v-col v-for="(tool, index) in filteredItems" :key="index" cols="16" md="4" >
           <v-card
           :class="[
               index % 1 === 0 ? 'py-2' : index % 5 === 0 ? 'py-8' : 'py-4',
@@ -467,7 +467,7 @@ export default {
               'px-2', // Added class for styling
             ]"
             max-width="600"
-            style="padding: 1pc"
+            style=""
           >
             <v-icon color="green" style="padding-left: 2pc">mdi-robot</v-icon>
             <v-icon color="info" style="padding-left: 0pc">mdi-robot</v-icon>
@@ -486,7 +486,7 @@ export default {
               </a>
 
 
-                <v-chip
+              <v-chip
                 @click="openDialog(tool.Name, tool.description)"
       append-icon="mdi-information"
       class="ma-2"
@@ -495,7 +495,16 @@ export default {
       Description
     </v-chip>
 
-              <v-card-actions>
+    <v-chip
+
+      append-icon=""
+      class="ma-5"
+      color="success"
+    >
+      {{tool.Category}}
+    </v-chip>
+
+              <!-- <v-card-actions>
                 <v-spacer></v-spacer>
 
                 <v-speed-dial location="right top" transition="fade-transition">
@@ -507,8 +516,8 @@ export default {
                     tool.Category
                   }}</v-btn>
                 </v-speed-dial>
-              </v-card-actions>
-              <v-card-actions style="padding-left: 7pc">
+              </v-card-actions> -->
+              <!-- <v-card-actions style="padding-left: 7pc">
                 <v-spacer></v-spacer>
 
                 <v-speed-dial location="left center" transition="fade-transition">
@@ -538,7 +547,7 @@ export default {
                 icon="mdi-share-variant"
                 size=""
               ></v-btn> -->
-              </v-card-actions>
+              <!-- </v-card-actions> -->
             </v-card-actions>
           </v-card>
         </v-col>

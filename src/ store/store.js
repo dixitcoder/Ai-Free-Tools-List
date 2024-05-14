@@ -7,6 +7,7 @@ const store = createStore({
   state() {
     return {
       tools: [
+
         {
           "_id": "HcbX6OhVZcvGbHZwPJUX",
           "Category": "A deep learning platform that automates model creation and deployment for businesses to leverage AI.",
