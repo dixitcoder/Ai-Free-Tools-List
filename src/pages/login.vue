@@ -3,6 +3,8 @@ import { ref, computed, onMounted } from "vue";
 import router from "@/router";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
+
+
 import { useStore } from "vuex";
 import { auth } from "@/services/firebaseauth";
 
@@ -60,11 +62,12 @@ const doLogin = async () => {
 </script>
 
 <template>
-  
+
   <div>
     <div id="app">
       <div class="login-page">
         <transition name="fade">
+
           <div v-if="!registerActive" class="wallpaper-login"></div>
         </transition>
         <div class="wallpaper-register"></div>
@@ -77,7 +80,10 @@ const doLogin = async () => {
                 class="card login"
                 v-bind:class="{ error: emptyFields }"
               >
-                <h1>Sign In</h1>
+            
+
+              <h1>Sign In</h1>
+              <v-btn class="btn" color="primary" style="font-style:italic;" @click="loginWithGoogle">Google Auth</v-btn><br>
                 <div  class="form-group">
                   <input
                     v-model="emailLogin"

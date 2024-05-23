@@ -5,15 +5,17 @@ const cors = require('cors'); // Import the cors middleware
 const port = 4000;
 app.use(cors());
 
+const host ="10.10.10.9" ;
+
 async function main() {
     const filter = {};
 
     // Connect to MongoDB
-    const client = await MongoClient.connect('mongodb+srv://dixitcoder:BWjk41udXbqxA3mA@cluster0.zufs6xx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0');
+    const client = await MongoClient.connect('mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.2.6');
 
     try {
-        const db = client.db('sample_mflix');
-        const collection = db.collection('tools-ai');
+        const db = client.db('admin');
+        const collection = db.collection('aitool');
 
         // Query the collection
         const cursor = collection.find(filter);
@@ -45,6 +47,8 @@ app.get('/', async (req, res) => {
 });
 
 // Start the server
-app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
-});
+app.listen(port, host, () => {
+    console.log(`Server running on port ${host}:${port}`);
+
+  });
+

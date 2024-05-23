@@ -32,7 +32,7 @@ export default {
     </header>
 
     <div class="container">
-        <h2 class="container-heading" style="color:white">Featured Courses</h2> 
+        <h2 class="container-heading" style="color:white">Featured Courses</h2>
         <div class="course-list">
             <!-- HTML Course -->
 
