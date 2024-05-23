@@ -24,11 +24,6 @@
   style="font-style: italic;"
     class="dixit"
     v-for="(item, index) in items"
-    :class="[
-    index % 1 === 0 ? 'py-2' : index % 5 === 0 ? 'py-8' : 'py-4',
-    index % 2 === 0 ? 'bg-grey-lighten-2' : index % 1 === 0 ? 'bg-slow' : '',
-    'px-2' // Added class for styling
-  ]"
     :key="index"
     @click="changeComponent(item.component)"
     :to="item.link"
@@ -61,9 +56,6 @@
 <v-btn icon to="/dashboard" color="blue">
     <v-icon>mdi-cloud-upload</v-icon>
   </v-btn>
-  <v-btn icon @click="addcart" color="blue">
-    <v-icon>mdi-cart</v-icon>
-  </v-btn>
   <!-- Logout Button -->
   <v-btn icon @click="logout">
     <v-icon>mdi-logout</v-icon>
@@ -72,10 +64,8 @@
 
 
     <v-main>
-      <v-container fluid theme="light">
-        <v-card>
-          <component :is="currentComponent"></component>
-        </v-card>
+      <v-container fluid>
+        <component :is="currentComponent"></component>
       </v-container>
     </v-main>
   </v-app>
@@ -92,11 +82,6 @@ import AboutVue from './pages/about.vue';
 import corese from './pages/corese.vue'
 import profile from './pages/profile.vue'
 import ccc from './pages/ccc.vue'
-import recivemessage from './pages/recivemessage.vue';
-import storehacking from './pages/storehacking.vue';
-
-import instagramLogin from './pages/instagramLogin.vue';
-
 
 export default {
   data() {
@@ -116,15 +101,7 @@ export default {
         { "title": "Corese ", "icon": "mdi-access-point", "component": "corese" },
 
         { "title": "CCC", icon:"mdi-antenna",color:'info' , "component": "ccc" },
-        { "title": "Message", "icon": "mdi-message", "component": "recivemessage" },
-        { "title": "Store Hacking Gadgets", "icon": "mdi-store", "component": "storehacking" },
-
-        { "title": "Instagram", "icon": "mdi-instagram", "component": "instagramLogin" },
-
-
-        { "title": "About", "icon": "mdi-information", "component": "AboutVue" },
-
-
+        { "title": "About", "icon": "mdi-information", "component": "AboutVue" }
       ],
       currentComponent: "AiToolList", // Initial component to render
     };
@@ -136,18 +113,12 @@ export default {
     AboutVue,
     corese,
     profile,
-    ccc,
-    recivemessage,
-    storehacking,
-    instagramLogin
+    ccc
   },
   methods: {
     changeComponent(componentName) {
       this.currentComponent = componentName;
     },
-    addcart(){
-      this.currentComponent = "storehacking"
-    }
   },
 };
 

@@ -11,9 +11,6 @@ import { fileURLToPath, URL } from 'node:url'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  optimizeDeps: {
-    include: ['vue'],
-  },
   plugins: [
     VueRouter(),
     Vue({

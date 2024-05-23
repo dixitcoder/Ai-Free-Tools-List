@@ -20,7 +20,6 @@ import c from '/home/dixitcoder/Desktop/DixitCoder_Project/tools-ai/src/pages/tu
 import Ruby from '/home/dixitcoder/Desktop/DixitCoder_Project/tools-ai/src/pages/tutorial/ruby.vue'
 // Import Vue Router
 
-import user1 from '@/user2.vue'
 // firebase auth
 
 
@@ -53,9 +52,6 @@ routes :  [
   {path:'/java',name:'Java Basics',component: java},
   {path:'/c++',name:'c++ Basics',component: c},
   {path:'/ruby',name:'Ruby Basics',component: Ruby},
-
-
-  {path:'/user1',name:'user1',component: user1},
 
 
 

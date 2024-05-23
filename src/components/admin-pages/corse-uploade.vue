@@ -16,7 +16,7 @@
  <v-card mx-auto="1000" style="padding:2pc">
   <v-form @submit.prevent="sendDataToFirestore">
     <v-text-field v-model="tools.img" label="Image URL" required></v-text-field>
-    <v-text-field v-model="tools.link" label="PDF Link" required></v-text-field>
+    <v-text-field v-model="tools.link" label="Link" required></v-text-field>
 
 
       <v-text-field v-model="tools.title" label="Title" required></v-text-field>

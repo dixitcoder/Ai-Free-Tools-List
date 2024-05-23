@@ -5,7 +5,6 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "start": "nodemon mongo.js",
     "lint": "eslint . --fix --ignore-path .gitignore"
   },
   "dependencies": {
@@ -26,7 +25,6 @@
     "vue": "^3.4.0",
     "vue-google-oauth2": "^1.5.10",
     "vue-google-signin-button": "^1.0.4",
-    "vue3-google-login": "^2.0.26",
     "vuetify": "^3.6.0-beta.0.0",
     "vuex": "^4.1.0"
   },

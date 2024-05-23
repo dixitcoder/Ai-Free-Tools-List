@@ -289,7 +289,7 @@ AI is a dynamic and rapidly evolving field with diverse applications across indu
 
 <footer>
 
-  <span style="color:white;font-style:bold;font-size:x-large">Instagram: <spna style="color:darkgreen">Dixitcoder</spna></span>
+  <h1>Instagram: <h1>Dixitcoder</h1></h1>
   <span>
 
     Find me across various platforms, and if you appreciate my work, share it
@@ -1321,7 +1321,7 @@ p {
   color: white;
 }
 .new{
-
+  
   border-radius: 25px;
   font: bold;
   font-style: italic;
