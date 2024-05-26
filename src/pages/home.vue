@@ -46,6 +46,7 @@
 
               <div class="container">
 
+                <marquee scrollamount="10" direction="up">
                 <div class="info">
                   <h1>AI Technologies Tools : 283
 </h1>
@@ -54,6 +55,7 @@
                   </span><br><br>
                   <v-btn to="/AiToolsList" icon="mdi-robot" color="primary"></v-btn>
                 </div>
+              </marquee>
                 <div class="image">
                   <img
                     class="main-image"
@@ -184,6 +186,7 @@
   </div>
 
 </figure>
+
  <article>
    <div>
 
@@ -192,7 +195,7 @@
 
             <span style="color:white" class="has-dropcap">
 
-
+            
 
 Artificial Intelligence (AI) refers to the simulation of human intelligence in machines that are programmed to think, learn, and solve problems like humans. It encompasses a wide range of technologies and applications that aim to replicate or augment human intelligence. Here are some key aspects and applications of AI:
 
@@ -1321,7 +1324,8 @@ p {
   color: white;
 }
 .new{
-  
+  background-color: #162C46;
+  font-family: sans-serif;
   border-radius: 25px;
   font: bold;
   font-style: italic;

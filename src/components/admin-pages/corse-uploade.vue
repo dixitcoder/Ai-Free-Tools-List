@@ -13,14 +13,14 @@
     </v-speed-dial><br><br>
 
     <!-- Course form -->
- <v-card mx-auto="1000" style="padding:2pc">
+ <v-card mx-auto="1000" theme="red" style="padding:2pc;background-color: #0D2136;">
   <v-form @submit.prevent="sendDataToFirestore">
-    <v-text-field v-model="tools.img" label="Image URL" required></v-text-field>
-    <v-text-field v-model="tools.link" label="Link" required></v-text-field>
+    <v-text-field class="text" v-model="tools.img" label="Image URL" required></v-text-field>
+    <v-text-field class="text" v-model="tools.link" label="Link" required></v-text-field>
 
 
-      <v-text-field v-model="tools.title" label="Title" required></v-text-field>
-      <v-text-field v-model="tools.description" label="Description" required></v-text-field>
+      <v-text-field class="text" v-model="tools.title" label="Title" required></v-text-field>
+      <v-text-field class="text" v-model="tools.description" label="Description" required></v-text-field>
 
 
       <v-btn type="submit" color="primary">Submit</v-btn>
@@ -68,3 +68,9 @@ export default {
   }
 };
 </script>
+<style scoped>
+.text{
+  color: #DEE1E3;
+  font-weight: bold;
+}
+</style>

@@ -2,7 +2,7 @@
 
 
   <v-app>
-    <v-navigation-drawer app :mini-variant.sync="mini" v-model="drawer">
+    <v-navigation-drawer app :mini-variant.sync="mini" v-model="drawer" style="background-color: #031525;">
       <v-list dense rail>
         <v-list-item-content class="text-center">
         <v-list-item
@@ -20,18 +20,22 @@
   class="border-opacity-100"
   color="success"
 ></v-divider>
+<span style="padding-left: 1pc;">Product categories
+</span>
+<br>
   <v-list-item
-  style="font-style: italic;"
     class="dixit"
     v-for="(item, index) in items"
     :key="index"
-    @click="changeComponent(item.component)"
+    @click="changeComponent(item.component,item.title)"
     :to="item.link"
-    :style="{ backgroundColor: item.backgroundColor, borderBottom: '1px solid ' + item.borderColor }"
+    :style="{ backgroundColor: item.backgroundColor, borderBottom: '10px solid ' + item.borderColor , color:item.color }"
+
   >
+
     <v-list-item-icon :style="{ color: item.color }">
       <v-icon
-        style="padding: 1px;"
+        style="padding: 5px;"
         :style="{ 'font-size': '20px', 'font-weight': 'bold', color: item.color }"
       >
         {{ item.icon }}
@@ -40,31 +44,34 @@
     <span
       class="title"
       :style="{ color: item.textColor, fontSize: item.fontSize }"
+      style="padding-left: 10px;font-family: sans-serif;"
     >
       {{ item.title }}
     </span>
   </v-list-item>
+
+
       </v-list>
     </v-navigation-drawer>
 
 
-    <v-app-bar app color="dark" class="dixit" dark>
-  <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-  <v-toolbar-title style="display: flex; font-style: italic;">Ai Free Tools List</v-toolbar-title>
+    <v-app-bar app  style="background-color: #031525;"  >
 
-<!-- dashboard -->
-<v-btn icon to="/dashboard" color="blue">
-    <v-icon>mdi-cloud-upload</v-icon>
-  </v-btn>
-  <!-- Logout Button -->
-  <v-btn icon @click="logout">
-    <v-icon>mdi-logout</v-icon>
-  </v-btn>
-</v-app-bar>
+      <v-toolbar-title style="display: flex; font-family:sans-serif;color:#fff;width:bold;padding-left: 24px;">{{title}}</v-toolbar-title>
+
+    <!-- dashboard -->
+    <v-btn icon to="/dashboard" color="blue">
+        <v-icon>mdi-home</v-icon>
+      </v-btn>
+      <!-- Logout Button -->
+      <v-btn icon @click.stop="drawer = !drawer">
+        <v-icon >mdi-menu</v-icon>
+      </v-btn>
+    </v-app-bar>
 
 
     <v-main>
-      <v-container fluid>
+      <v-container fluid style="background-color: #031525;">
         <component :is="currentComponent"></component>
       </v-container>
     </v-main>
@@ -82,27 +89,30 @@ import AboutVue from './pages/about.vue';
 import corese from './pages/corese.vue'
 import profile from './pages/profile.vue'
 import ccc from './pages/ccc.vue'
+import recivemessage from '@/components/pages/recivemessage.vue'
+import livestream from '@/components/pages/livestream.vue'
 
 export default {
   data() {
     return {
       drawer: true,
+      title:'',
       mini: true,
       items: [
+  { "title": "Home", "icon": "mdi-home", "link": "/home" },
+  { "title": "Ai Tool", "icon": "mdi-robot", "component": "AiToolList" },
+
+  { "title": "Google Maps", "icon": "mdi-map", "component": "MapsGoogleVue" },
+  { "title": "Animation Gallery", "icon": "mdi-calendar", "component": "Calendar" },
+  { "title": "Courses", "icon": "mdi-access-point", "component": "corese" },
+
+  { "title": "CCCs", icon:"mdi-antenna", color:'info' , "component": "ccc" },
+  { "title": "Message", icon:"mdi-message", color:'info' , "component": "recivemessage" },
+  { "title": "Live Stream", icon:"mdi-video", color:'info' , "component": "livestream" },
 
 
-        { "title": "Home", "icon": "mdi-home", "link": "/home" },
-        { "title": "Ai Tool", "icon": "mdi-robot", "component": "AiToolList" },
-
-
-
-        { "title": "Google Maps", "icon": "mdi-map", "component": "MapsGoogleVue" },
-        { "title": "Animation Gallery", "icon": "mdi-calendar", "component": "Calendar" },
-        { "title": "Corese ", "icon": "mdi-access-point", "component": "corese" },
-
-        { "title": "CCC", icon:"mdi-antenna",color:'info' , "component": "ccc" },
-        { "title": "About", "icon": "mdi-information", "component": "AboutVue" }
-      ],
+  { "title": "About", "icon": "mdi-information", "component": "AboutVue" }
+],
       currentComponent: "AiToolList", // Initial component to render
     };
   },
@@ -113,11 +123,15 @@ export default {
     AboutVue,
     corese,
     profile,
-    ccc
+    ccc,
+    recivemessage,
+    livestream
   },
   methods: {
-    changeComponent(componentName) {
+    changeComponent(componentName,title) {
       this.currentComponent = componentName;
+      this.drawer = false
+      this.title = title;
     },
   },
 };
@@ -128,14 +142,17 @@ export default {
 /* Add your custom styles here */
  .dixit:hover {
   color: #ff6200;
+  background-color: #10253B;
+  border: 2px solid rgb(0, 71, 138);
+  border-radius: 30px;
 }
 
  .dixit::before {
   content: "";
   display: block;
-  height: 5px;
+  height: 2px;
   width: 100%;
-  background-color: #ff6200;
+  background-color: #34ff0b;
   position: absolute;
   top: 0;
   width: 0%;
@@ -144,5 +161,15 @@ export default {
 
  .dixit:hover::before {
   width: 100%;
+}
+.title{
+  font-family: sans-serif;
+
+  color: rgb(211, 227, 253)  ;
+  width: 500;
+  font-size: 14px  ;
+  line-height: 20px ;
+  font: bold;
+  font-family:sans-serif;
 }
 </style>

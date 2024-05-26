@@ -1,5 +1,5 @@
 <template>
-  <v-card style="padding:5pc">
+  <v-card style="background-color: #031525;">
   <v-container fluid>
     <!-- Header -->
     <v-row align="center">
@@ -11,9 +11,9 @@
     </v-row>
 
     <!-- Main Content -->
-    <v-row justify="center" align="center">
+    <v-row justify="center" align="center" >
       <v-col cols="12" md="8">
-        <v-card>
+        <v-card style="background-color: #031525;">
           <v-card-text>
             <h2 class="text-h6 mb-4">Our Mission</h2>
             <p>
@@ -33,8 +33,8 @@
     <v-row justify="center" align="center" class="mt-6">
       <v-col cols="12" md="8">
         <v-card>
-          <v-card-text>
-            <div class="text-center">
+          <v-card-text style="background-color: #031525;">
+            <div style="background-color: #031525;" class="text-center">
               <h3 style="color:white" class="mb-4">Follow Us</h3>
               <v-btn
                 icon

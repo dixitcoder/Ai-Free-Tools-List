@@ -1,17 +1,17 @@
 
 <template>
 
-  <v-card>
-    <v-container>
+  <v-card style="background-color: #031525;">
+    <v-container style="background-color: #031525;">
       <!-- Header -->
       <header class="dixit">
         <h1>Our CCC Course Website </h1>
       </header>
 
       <!-- Tool Cards -->
-      <v-expansion-panels dark>
-    <div v-for="(item, index) in items" :key="index" class="tab_container">
-      <section :id="`content${index + 1}`" class="tab-content" v-if="selectedItem === item">
+      <v-expansion-panels style="background-color: #031525;">
+    <div style="background-color: #031525;" v-for="(item, index) in items" :key="index" class="tab_container">
+      <section  :id="`content${index + 1}`" class="tab-content" v-if="selectedItem === item">
         <component :is="item.component"></component>
       </section>
     </div>

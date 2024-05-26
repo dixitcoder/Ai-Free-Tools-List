@@ -1,79 +1,75 @@
 <template>
-  <v-card elevation="3">
-    <v-container>
-      <v-row align="center">
-        <v-col cols="12" md="6">
-<h2>New Add Photos
-
-<v-btn href="/registergallery" color="primary" icon="mdi-plus"></v-btn>
-
-</h2><p style="color:red">one time reload</p>
-        </v-col>
-        <v-col cols="12" md="6">
-
-          <v-select
-            v-model="selectedCategory"
-            :items="categories"
-            label="Select Category"
-            @change="filterGallery"
-          ></v-select>
-        </v-col>
-      </v-row>
-      <v-divider class="my-4"></v-divider>
-      <v-row>
-        <v-btn @click="data()" color="primary"  icon="mdi-refresh"></v-btn>
-
-    
+    <br>
+    <div >
 
 
+        <div class="container gallery-container">
+
+          <h1>All Member  Gallery 👨‍💻</h1>
+
+          <p class="page-description text-center">Futures Collection ⛩</p>
+
+          <div class="tz-gallery">
+
+              <div class="row">
+
+                  <div class="col-sm-12 col-md-4" v-for="item in filteredItems" :key="item">
+                      <a class="lightbox">
+
+                        <img
+                        v-if="item.src"
+                        :src="item.src"
+                        alt="Example Images"
+                        loading="lazy"
+                        @error="setDefaultImage"
+                        background-color="primary"
+                        data-src="https://photos.fife.usercontent.google.com/pw/AP1GczPmRscCBBoYHOWVFeWs1fEsHwKDML23mNGeFNr0J_YhWtmPwA-FL6ZP=w457-h938-s-no-gm?authuser=1"
+                      >
+
+                      </a>
+                  </div>
 
 
+              </div>
 
-        <v-col cols="12" md="4" v-for="(item, index) in filteredItems" :key="index">
-          <v-card>
+          </div>
 
-            <v-img :src="item.src" aspect-ratio="1.5"></v-img>
-            <v-card-text>
-              <h2>{{ item.username }}</h2>
-              <a href='#'>Instagram</a>
-            </v-card-text>
-            <v-card-actions>
-              <v-btn text>Details</v-btn>
-              <v-btn text>Next</v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-col>
-      </v-row>
-    </v-container>
-  </v-card>
+      </div>
+
+    </div>
+
 </template>
 
 <script>
-import {db} from '@/services/firebaseauth'
-import { collection, onSnapshot } from 'firebase/firestore';
+import { db } from "@/services/firebaseauth";
+import { collection, onSnapshot } from "firebase/firestore";
+import { getDownloadURL } from 'firebase/storage';
 
 export default {
   data() {
     return {
-      categories: ['dixitcoder',],
-      selectedCategory: 'All',
+      categories: ["dixitcoder"],
+      selectedCategory: "All",
       selectedImage: null,
-      galleryItems: [
-
-        // Add more gallery items as needed
-      ],
+      galleryItems: [],
+      loading: false,
     };
   },
   computed: {
     filteredItems() {
-      if (this.selectedCategory === 'All') {
+      if (this.selectedCategory === "All") {
         return this.galleryItems;
       } else {
-        return this.galleryItems.filter(item => item.username === this.selectedCategory);
+        return this.galleryItems.filter(
+          (item) => item.username === this.selectedCategory
+        );
       }
     },
   },
   methods: {
+    setDefaultImage(event) {
+    event.target.src = 'https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light';
+  },
     handleImageUpload() {
       if (this.selectedImage) {
         const reader = new FileReader();
@@ -86,13 +82,21 @@ export default {
     filterGallery() {
       // Logic to filter gallery based on selected category
     },
-    data(){
-      const toolsCollectionRef = collection(db, 'gallery');
+    data() {
+      this.loading = true;
+      const toolsCollectionRef = collection(db, "gallery");
       onSnapshot(toolsCollectionRef, (snapshot) => {
         const tools = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-      this.galleryItems = tools
+        this.galleryItems = tools;
+        this.loading = false;
       });
-    }
+    },
+    reserve() {
+      // Add logic for reserve button click
+    },
+  },
+  mounted() {
+    this.data();
   },
 };
 </script>

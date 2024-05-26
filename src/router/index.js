@@ -5,6 +5,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import {auth} from '@/services/firebaseauth'
 // Import your Vue components
 import Login from '@/pages/login.vue';
+import login1 from './../pages/login1.vue'
 import Home from '/home/dixitcoder/Desktop/DixitCoder_Project/tools-ai/src/pages/home.vue'
 import mongo from '../pages/datamongo.vue'
 import AiToolsList from '@/components/AiToolsList.vue'
@@ -52,6 +53,7 @@ routes :  [
   {path:'/java',name:'Java Basics',component: java},
   {path:'/c++',name:'c++ Basics',component: c},
   {path:'/ruby',name:'Ruby Basics',component: Ruby},
+  {path:'/login1',name:'Ruby Basics',component: login1},
 
 
 

@@ -466,8 +466,10 @@ export default {
               index % 2 === 0 ? 'bg-grey-lighten-2' : index % 1 === 0 ? 'bg-slow' : '',
               'px-2', // Added class for styling
             ]"
+            class="dixit"
+            style="border-radius: 30px;"
             max-width="600"
-            style=""
+            
           >
             <v-icon color="green" style="padding-left: 2pc">mdi-robot</v-icon>
             <v-icon color="info" style="padding-left: 0pc">mdi-robot</v-icon>
@@ -482,7 +484,7 @@ export default {
               index % 2 === 0 ? 'bg-grey-lighten-2' : index % 1 === 0 ? 'bg-slow' : '',
               'px-2', // Added class for styling
             ]"
-                 variant="outlined" color="primary">Link</v-btn>
+                 variant="outlined" color="primary"> LINK 💗</v-btn>
               </a>
 
 
@@ -567,4 +569,31 @@ export default {
   </div>
 </template>
 
-<style></style>
+<style scoped>
+
+/* Add your custom styles here */
+.dixit:hover {
+  color: #ff6200;
+  background-color: #10253B;
+  border: 2px solid rgb(0, 71, 138);
+  border-radius: 30px;
+}
+
+ .dixit::before {
+  border: 2px solid rgb(0, 71, 138);
+  border-radius: 30px;
+  content: "";
+  display: block;
+  height: 2px;
+  width: 100%;
+  background-color: #34ff0b;
+  position: absolute;
+  top: 0;
+  width: 0%;
+  transition: all ease-in-out 250ms;
+}
+
+ .dixit:hover::before {
+  width: 100%;
+}
+</style>

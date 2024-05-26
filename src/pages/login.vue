@@ -1,26 +1,52 @@
 <script setup>
 import { ref, computed, onMounted } from "vue";
 import router from "@/router";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword , createUserWithEmailAndPassword  } from "firebase/auth";
+import {addDoc,collection} from 'firebase/firestore'
 
 import { useStore } from "vuex";
-import { auth } from "@/services/firebaseauth";
+import { auth ,db} from "@/services/firebaseauth";
 
 // user login
 const emailLogin = ref('')
 const passwordLogin = ref('')
 
+// user register
+const emailReg = ref('')
+const passwordReg = ref('')
+
 const loginError = ref(false);
 const isAuthenticated = ref(false);
 
 
+
 const store = useStore();
+
+const userID  =ref('')
+
+const usertoken = ref({
+  _userID:'',
+  fullName: "Dixit Patel",
+      username: "dixitcoder",
+      profilePicUrl: "https://instagram.fkul18-1.fna.fbcdn.net/v/t51.2885-19/44884218_345707102882519_2446069589734326272_n.jpg?_nc_ad=z-m&_nc_ht=instagram.fkul18-1.fna.fbcdn.net&_nc_cat=1&_nc_ohc=hzidlFdfQAUQ7kNvgELxUqR&edm=AEaYFD0BAAAA&ccb=7-5&ig_cache_key=YW5vbnltb3VzX3Byb2ZpbGVfcGlj.2-ccb7-5&oh=00_AYB0LkC4Svwvp9ozva-RtocX_P_s72ThfbtoOqbeKg9Nzw&oe=6658C20F&_nc_sid=de718f",
+      biography: "Web Developer | Crafting digital experiences with code and creativity ☕✨ | Dreamer by night, building digital bridges by day 🌉 | Transforming ideas",
+      externalUrl: "https://login-b3036.web.app/",
+      bioLinks: [
+        { title: "Patel_dixit_1005", url: "https://login-b3036.web.app/", link_type: "external" },
+        { title: "Facebook profile", url: "https://www.facebook.com/profile.php?id=61553112200387&ref=xav_ig_profile_web", link_type: "facebook" },
+        { title: "Dixitcoder AI Tools", url: "https://dixitcoder-tools-ai.web.app", link_type: "external" }
+      ]
+})
 
 const newcall = () => {
   let log = store.state.users;
   log = false;
   console.log(log);
 };
+
+import Cookies from "js-cookie";
+
+
 
 newcall();
 
@@ -33,6 +59,30 @@ onMounted(() => {
   });
 });
 
+const doRegister = async () => {
+  createUserWithEmailAndPassword(auth, emailReg.value, passwordReg.value)
+  .then((userCredential) => {
+    // Signed up
+    const user = userCredential.user;
+     userID.value  =   user.uid
+     usertoken.value._userID = user.uid
+     sendUserID()
+
+// Set a cookie
+Cookies.set("user_id", userID.value, { expires: 365 });
+
+// Get a cookie
+const cookieValue = Cookies.get("user_id");
+
+console.log(cookieValue); // Output: NJOb0ZlTZqURFIvymdiXUQ1g0NH3
+  })
+  .catch((error) => {
+  console.log(error);
+  })
+}
+
+
+
 const doLogin = async () => {
   console.log(emailLogin,passwordLogin);
   try {
@@ -42,9 +92,16 @@ const doLogin = async () => {
       passwordLogin.value
     );
     const user = userCredential.user;
+
     isAuthenticated.value = true;
     const data = JSON.stringify(user);
-      console.log(data);
+    console.log(data);
+Cookies.set("user_id", user.uid, { expires: 365 });
+
+// Get a cookie
+const cookieValue = Cookies.get("user_id");
+
+console.log(cookieValue);
     router.push("/dashboard");
   } catch (error) {
     loginError.value = true;
@@ -55,12 +112,29 @@ const doLogin = async () => {
 };
 
 
+const sendUserID = async () => {
+  try {
+    // Create a reference to the "patients" collection
+    const patientsCollectionRef = collection(db, "userID");
 
+    // Add a new document to the "patients" collection with the form data
+    const docRef = await addDoc(patientsCollectionRef, usertoken.value);
+
+    // Log the ID of the newly created document
+    console.log(userID.value);
+    console.log(usertoken);
+    console.log("Document written with ID:", docRef.id);
+
+  } catch (error) {
+    // Handle errors, e.g., show an error message to the user
+    console.error("Error adding document:", error);
+  }
+};
 
 </script>
 
 <template>
-  
+
   <div>
     <div id="app">
       <div class="login-page">
@@ -123,13 +197,7 @@ const doLogin = async () => {
                     placeholder="Password"
                     required
                   />
-                  <input
-                    v-model="confirmReg"
-                    type="password"
-                    class="form-control"
-                    placeholder="Confirm Password"
-                    required
-                  />
+
                   <input type="submit" class="btn btn-primary" @click="doRegister" />
                   <p>
                     Already have an account?

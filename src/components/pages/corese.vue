@@ -20,8 +20,8 @@ export default {
 };
 </script>
 <template>
- <v-card>
-    <v-container>
+ <v-card style="background-color: #031525;">
+    <v-container style="background-color: #031525;">
       <!-- Header -->
 
 
@@ -31,8 +31,8 @@ export default {
         <h1 >Our Programming Course Website PDF</h1>
     </header>
 
-    <div class="container">
-        <h2 class="container-heading" style="color:white">Featured Courses</h2> 
+    <div style="background-color: #031525;"  class="container">
+        <h2 class="container-heading" style="color:white">Featured Courses</h2>
         <div class="course-list">
             <!-- HTML Course -->
 
@@ -40,7 +40,7 @@ export default {
             <div class="course" v-for="item in items" :key="item">
                 <img :src="item.img" alt="CSS Course Image">
                 <h2>{{item.title}}</h2>
-                <p>Master CSS styling techniques such as selectors, box model, flexbox, and grid.</p>
+                <p>{{item.description}}</p>
               <div class="dixit">  <v-btn :href="item.link" class="dixit" color="primary" >PDF</v-btn>
               </div>
             </div>

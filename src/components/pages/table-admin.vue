@@ -1,6 +1,7 @@
 <template>
   <v-card>
-    <v-table style="padding: 5pc" fixed-header height="800px">
+
+    <v-table  style="background-color: #071A2B;padding:3pc" fixed-header height="800px">
       <thead>
         <tr>
           <th class="text-left">ID</th>
@@ -53,7 +54,7 @@
 
     <!-- Edit Profile Dialog -->
     <v-dialog v-model="dialog" fullscreen>
-      <v-card>
+      <v-card style="background-color: #071A2B;">
         <v-toolbar dark color="primary">
           <v-btn icon dark @click="dialog = false">
             <v-icon>mdi-close</v-icon>
@@ -66,10 +67,10 @@
           </v-toolbar-items>
         </v-toolbar>
         <v-list lines="two" subheader>
-          <v-list-subheader>User Profile</v-list-subheader>
+          <v-list-subheader style="background-color: #071A2B;"> User Profile</v-list-subheader>
           <v-row>
             <v-col cols="12">
-              <v-card>
+              <v-card style="background-color: #071A2B;">
                 <v-divider />
                 <v-card-text>
                   <v-card-title>Profile Details</v-card-title>

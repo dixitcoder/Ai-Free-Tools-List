@@ -56,7 +56,7 @@ export default {
 };
 </script>
 <template>
- <v-card>
+ <v-card style="background-color: #031525;">
     <v-container>
       <!-- Header -->
       <v-row>
@@ -69,7 +69,7 @@ export default {
       </v-row>
 
       <!-- Tool Cards -->
-      <v-card elevation="3">
+      <v-card style="background-color: #031525;" elevation="3">
 
         <v-card-text>
           <iframe

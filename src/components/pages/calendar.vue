@@ -1,8 +1,8 @@
 <template>
-<body>
-    <div class="m-box">
+<body style="background-color: #031525;">
+    <div  class="m-box" style="background-color: #031525;">
       <h2 style="color:white">Dixit - Coder</h2>
-     <div class="im" style="background-image: url('https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832_960_720.jpg');">
+     <div   class="im" style="background-image: url('https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832_960_720.jpg');">
         <h1>D</h1>
 
     </div>

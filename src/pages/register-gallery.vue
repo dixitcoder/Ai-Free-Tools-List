@@ -164,7 +164,7 @@ async function  uploadFile() {
       <v-icon to="/AiToolsList">mdi-arrow-left</v-icon>
 
       </h2></a>
-      <VCard style="padding:2pc"  append-icon="mdi-instagram" title="Photos Uploads">
+      <VCard style="padding:2pc;background-color: #0D2136;"  append-icon="mdi-instagram" title="Photos Uploads">
 
         <VCardText class="d-flex-center" >
           <!-- 👉 Avatar -->
