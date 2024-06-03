@@ -80,8 +80,7 @@ This project is built with [Vuetify](https://vuetifyjs.com/en/), a UI Library wi
 
 Copyright (c) 2016-present Vuetify, LLC
 # Ai-Free-Tools-List
-# Ai-Free-Tools-List
-# Ai-Free-Tools-List
+
 
 Project Documentation: Dixitcoder AI Tool List
 
