@@ -80,5 +80,6 @@ This project is built with [Vuetify](https://vuetifyjs.com/en/), a UI Library wi
 
 Copyright (c) 2016-present Vuetify, LLC
 # Ai-Free-Tools-List
-# Ai-Free-Tools-List
-# Ai-Free-Tools-List
+DIXIT CODER is a comprehensive platform designed to educate users about coding and software development. The website provides resources, tutorials, and tools to enhance programming skills across various languages and AI technologies.
+
+
